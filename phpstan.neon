@@ -1,0 +1,10 @@
+parameters:
+    level: 5
+    bootstrapFiles:
+        - vendor/autoload.php
+    paths:
+        - src
+    ignoreErrors:
+        - '#Function abort not found#'
+        - '#Function app not found#'
+        - '#Function config_path not found#'

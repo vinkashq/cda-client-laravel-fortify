@@ -1,0 +1,52 @@
+{
+    "name": "vinkas/cda-client-laravel-fortify",
+    "description": "Cross-Domain Authentication (CDA) client package for Laravel Fortify",
+    "keywords": [
+        "cda",
+        "cross-domain-authentication",
+        "fortify",
+        "laravel",
+        "auth-client"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Vinkas\\Cda\\Client\\": "src/"
+        }
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse"
+    },
+    "authors": [
+        {
+            "name": "Vinoth Kannan",
+            "email": "vinoth.kannan@vinkas.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Vinkas",
+            "homepage": "https://vinkas.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "phpstan/phpstan": "^2.0"
+    },
+    "require": {
+        "illuminate/support": "^11.33",
+        "illuminate/routing": "^11.33",
+        "illuminate/encryption": "^11.33"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vinkas\\Cda\\Client\\CdaServiceProvider"
+            ],
+            "aliases": {
+                "Cda": "Vinkas\\Cda\\Client\\Facades\\Cda"
+            }
+        }
+    }
+}
