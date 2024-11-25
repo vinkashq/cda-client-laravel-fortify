@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::namespace('Vinkas\Cda\Client\Http\Controllers')
     ->prefix(Config::get('cda.path'))
+    ->middleware('web')
     ->group(function (Router $router) {
         $router->get('/auth', 'CdaController@auth')->name('cda.auth');
         $router->get('/callback', 'CdaController@callback');

@@ -32,10 +32,11 @@ class Cda
     public function authenticate($request)
     {
         $payload = $request->input('payload');
+        $urlDecodedPayload = urldecode($payload);
         $signature = $request->input('signature');
-        parse_str(base64_decode($payload), $payload);
+        parse_str(base64_decode($urlDecodedPayload), $payload);
 
-        if ($signature != $this->getSignature($request->input('payload'))) {
+        if ($signature != $this->getSignature($urlDecodedPayload)) {
             abort(403, 'Invalid request');
         }
 
