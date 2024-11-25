@@ -37,3 +37,6 @@ jobs:
 
     - name: Run PHPStan analyse
       run: composer run analyse
+
+    - name: Run Pest tests
+      run: composer run test

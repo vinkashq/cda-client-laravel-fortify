@@ -22,7 +22,7 @@ class Cda
     public function redirect($returnPath = '/'): RedirectResponse
     {
         $this->nonce = $this->generateNonce();
-        Session::put($this->getNonceKey(), $returnPath);
+        Session::put($this->getNonceKey($this->nonce), $returnPath);
         $payload = $this->getPayload();
         $signature = $this->getSignature($payload);
         $url = Config::get('cda.server_url').'/cda/'.Config::get('cda.client_id').'?payload='.$payload.'&signature='.$signature;
@@ -39,12 +39,12 @@ class Cda
             abort(403, 'Invalid request');
         }
 
-        $nonceKey = $payload['nonce'];
+        $nonceKey = $this->getNonceKey($payload['nonce']);
         if (!Session::has($nonceKey)) {
             abort(403, 'Invalid request');
         }
 
-        $userClass = Config::get('providers.users.model');
+        $userClass = Config::get('cda.user_model');
         $user = $userClass::where('id', $payload['id'])->first();
         if (!$user) {
             abort(403, 'Invalid request');
@@ -68,8 +68,8 @@ class Cda
         return hash_hmac('sha256', $payload, Config::get('cda.client_secret'));
     }
 
-    public function getNonceKey() {
-        return 'CDA_NONCE_' . $this->nonce;
+    public function getNonceKey($nonce) {
+        return 'CDA_NONCE_' . $nonce;
     }
 
     public function generateNonce()

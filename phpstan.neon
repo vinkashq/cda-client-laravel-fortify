@@ -4,7 +4,9 @@ parameters:
         - vendor/autoload.php
     paths:
         - src
+        - tests
     ignoreErrors:
-        - '#Function abort not found#'
-        - '#Function app not found#'
-        - '#Function config_path not found#'
+        - '#Call to an undefined method PHPUnit\\Framework\\TestCase::get#'
+        - '#Call to static method random\(\) on an unknown class Str#'
+        - '#Access to an undefined property Illuminate\\Database\\Eloquent\\Collection#'
+        - '#Access to an undefined property Illuminate\\Contracts\\Auth\\Authenticatable#'
